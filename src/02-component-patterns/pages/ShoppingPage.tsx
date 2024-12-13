@@ -1,5 +1,6 @@
-import React from 'react'
-import { ProductCard } from '../components/ProductCard'
+
+import { ProductBotons, ProductCard, ProductImage, ProductTitle } from '../components'
+import '../styles/custom-styles.css';
 
 const product = {
   id:'1',
@@ -19,10 +20,46 @@ export const ShoppingPage = () => {
       flexWrap:'wrap'
     }}>
       <ProductCard product={product}>
-          <ProductCard.Image/>
-          <ProductCard.Title title={'hora vergas'}/>
-          <ProductCard.Botons/>
+          <ProductCard.Image className="custom-image"/>
+          <ProductCard.Title title={'hora vergas'} className="text-white text-bold"/>
+          <ProductCard.Botons className='custom-boton'/>
       </ProductCard>
+      
+      <ProductCard 
+        product={product}
+        className = "bg-dark"
+      >
+         <ProductImage className="custom-image" />
+         <ProductTitle className="text-white text-bold"/> 
+         <ProductBotons className='custom-boton'/>
+      </ProductCard>
+
+      <ProductCard 
+        product={product}
+        style={{
+          backgroundColor:'#70d1F8'
+        }}
+      >
+         <ProductImage 
+          style={{
+            borderColor:'red',
+            border:'100px'
+          }}
+         />
+         <ProductTitle 
+          style={{
+            color:'yellow'
+          }}
+         /> 
+         <ProductBotons 
+          style={{
+            width:'100px',
+            margin:'0 auto',
+            paddingTop:'10px'
+          }}
+         />
+      </ProductCard>
+      
      
     </div>
 

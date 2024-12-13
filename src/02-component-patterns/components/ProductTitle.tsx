@@ -3,7 +3,13 @@ import { ProductContextProps } from "../interfaces/product.inteface";
 import { ProductContext } from "./ProductCard";
 import styles from '../styles/styles.module.css';
 
-export const ProductTitle = ({ title }: { title?: String }) => {
+export interface Props {
+    title?: String;
+    className?:string;
+    style?:React.CSSProperties;
+}
+
+export const ProductTitle = ({ title,className,style }: Props) => {
 
     const { product } = useContext<ProductContextProps>(ProductContext);
 
@@ -12,6 +18,9 @@ export const ProductTitle = ({ title }: { title?: String }) => {
     }
 
     return (
-        <span className={styles.productDescription}>{title}</span>
+        <span 
+            className={`${styles.productDescription} ${className}`}
+            style={style}
+        >{title}</span>
     );
 }
