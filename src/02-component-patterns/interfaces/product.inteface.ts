@@ -31,3 +31,8 @@ export interface ProductCardHocProps {
     Botons: (props:ProductBotonProps) => JSX.Element;
     
 }
+
+export interface onChangeArgs {
+    product:Product;
+    count:number;
+}
