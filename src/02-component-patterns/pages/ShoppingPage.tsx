@@ -1,58 +1,16 @@
 
-import { useState } from 'react';
 import { ProductBotons, ProductCard, ProductImage, ProductTitle } from '../components'
-import { onChangeArgs, Product } from '../interfaces/product.inteface';
+
 import '../styles/custom-styles.css';
-
-
-interface ProductInCart extends Product {
-  count: number;
-}
-
-interface ProductInCartArr {
-  [clave: string]: ProductInCart;
-}
-
-const product1 = {
-  id: '1',
-  title: 'Coffe Mug mondongo',
-  img: './coffee-mug.png'
-}
-const product2 = {
-  id: '2',
-  title: 'Coffe Mug mondongo2',
-  img: './coffee-mug2.png'
-}
-
-
-const products: Product[] = [product1, product2];
+import { products } from '../data/products';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
 export const ShoppingPage = () => {
 
-  const [shoppingCart, setShoppingCart] = useState<ProductInCartArr>({});
+  
+  const { onProductCountChange,shoppingCart } = useShoppingCart();
 
 
-  const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    setShoppingCart(shopCart => {
-
-      let arrCart = { ...shopCart }
-      if (count===0) {
-         delete arrCart[`${product.id}`];
-
-         return arrCart;
-      }
-
-      return {
-        ...arrCart,
-        [product.id]: {
-          ...product,
-          count
-        }
-
-      }
-    });
-
-  }
 
   return (
     <div style={{
@@ -79,11 +37,11 @@ export const ShoppingPage = () => {
             >
               <ProductImage className="custom-image" />
               <ProductTitle className="text-white text-bold" />
-              <ProductBotons 
+              <ProductBotons
                 className='custom-boton'
                 style={{
-                  display:'flex',
-                  justifyContent:'center'
+                  display: 'flex',
+                  justifyContent: 'center'
                 }}
               />
             </ProductCard>
