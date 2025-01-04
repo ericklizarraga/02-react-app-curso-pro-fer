@@ -2,16 +2,18 @@ import styles from '../styles/styles.module.css';
 
 import React, { createContext, ReactElement } from 'react';
 import { useProduct } from '../hooks/useProduct';
-import { ProductContextProps, Product, onChangeArgs } from '../interfaces/product.inteface.ts';
+import { ProductContextProps, Product, onChangeArgs, InitialValues, ProductCardHandlers } from '../interfaces/product.inteface.ts';
 
 
 export interface Props {
     product: Product;
-    children?: ReactElement | ReactElement[];
+    // children?: ReactElement | ReactElement[];
+    children?: (handlers: ProductCardHandlers) => JSX.Element;
     className?: string;
     style?: React.CSSProperties;
     onChange?: (args: onChangeArgs) => void;
-    value?:number;
+    value?: number;
+    inicialValues?: InitialValues;
 }
 
 
@@ -23,27 +25,47 @@ export const ProductContext = createContext<ProductContextProps>({
     },
     useProduct: {
         counter: 0,
-        increaseBy: (value: number) => { }
+        increaseBy: (value: number) => { },
+        maxCount: undefined
     }
 });
 
 
 
-export const ProductCard = function producto({ children, product, className, style, onChange,value }: Props) {
+export const ProductCard = function producto({ children, product, className, style, onChange, value, inicialValues }: Props) {
 
 
 
-    const { counter, increaseBy } = useProduct({ product, onChange,value });
+    const { counter, increaseBy, maxCount,reset,isMaxCountReached } = useProduct({ product, onChange, value, inicialValues });
 
-    
+
 
     return (
-        <ProductContext.Provider value={{ product, useProduct: { counter, increaseBy } }}>
+        <ProductContext.Provider
+            value={{
+                product,
+                useProduct: {
+                    counter,
+                    increaseBy,
+                    maxCount
+                }
+            }}
+        >
             <div
                 className={`${styles.productCard} ${className}`}
                 style={style}
             >
-                {children}
+                {
+                !!children 
+                    &&  children({
+                            count:counter,
+                            increaseBy,
+                            maxCount,
+                            isMaxCountReached,
+                            product,
+                            reset,
+                        })
+                }
             </div>
         </ProductContext.Provider>
     )
