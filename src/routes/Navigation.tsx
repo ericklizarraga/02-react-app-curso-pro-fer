@@ -1,7 +1,6 @@
 import { BrowserRouter, Navigate, NavLink, Route, Routes, useNavigate } from "react-router-dom";
 
 //  @ts-ignore
-import { Lazypage01,Lazypage03,Lazypage02 } from '../01-lazyload/pages';
 
 import img from '../assets/react.svg';
 export const Navigation = ()=>{
@@ -36,9 +35,7 @@ export const Navigation = ()=>{
                 </nav>
 
                 <Routes>
-                    <Route path="lazy1" element={<Lazypage01/>}></Route>
-                    <Route path="lazy2" element={<Lazypage02/>}></Route>
-                    <Route path="/lazy3" element={<Lazypage03/>}></Route>
+            
                     <Route path="/*" element={<Navigate to={'/lazy1'} replace/>}></Route>
                     
                 </Routes>
