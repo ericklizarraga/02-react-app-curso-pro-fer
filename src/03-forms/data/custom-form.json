@@ -1,0 +1,76 @@
+[
+    {
+        "type":"text",
+        "name":"firstName",
+        "placeholder":"erick",
+        "label":"first name",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ]
+    },
+    {
+        "type":"text",
+        "name":"lastName",
+        "placeholder":"lizarraga ramos",
+        "label":"last name",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type":"minlength",
+                "value":"3"
+            }
+        ]
+    },
+    {
+        "type":"email",
+        "name":"email",
+        "placeholder":"ericklizarraga@live.com",
+        "label":"email",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            },
+            {
+                "type":"email",
+                "value":"no es un correo valido:V"
+            }
+        ]
+    },
+    {
+        "type":"select",
+        "name":"favoriteGame",
+        "placeholder":"ericklizarraga@live.com",
+        "label":"favoriteGame",
+        "value":"",
+        "validations":[
+            {
+                "type":"required"
+            }
+        ],
+        "options":[
+           {
+            "id":1,
+            "label": "super smash"
+           },
+           {
+            "id":2,
+            "label": "metal gear"
+           },
+           {
+            "id":3,
+            "label":  "resident evil"
+           },
+           {
+            "id":4,
+            "label":  "free fire"
+           }   
+        ]
+    }
+]
